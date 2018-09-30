@@ -1,0 +1,39 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName : com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/warehouse
+    username: root
+    password:
+    initialSize: 1
+    maxActive: 20
+    minIdle: 1
+    maxWait: 60000
+    validationuery: select 'x'
+    validationQueryTimeout: 5
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+  redis:
+    host: localhost
+    port: 6379
+
+  flyway:
+    baselineVersion: 1
+    baseline-on-migrate: true
+
+mybatis:
+  mapper-locations: classpath:mapper/common/*.xml
+  type-aliases-package: com.example.model
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+#  params: count=countSql
+
+logging:
+  level:
+    root: ERROR
+    com.example: DEBUG
