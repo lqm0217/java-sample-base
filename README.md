@@ -1,4 +1,4 @@
-##Function
+## Function
 >* Restful API
 >* Swagger UI
 >* Mybatis
@@ -6,18 +6,18 @@
 >* Mybatis Generator
 >* Flyway
 
-###IDE
+### IDE
 >[IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/#section=windows)
-###Local Server
+### Local Server
 >domain: http://localhost:8081
-###MySql Server
+### MySql Server
 >jdbc:mysql://localhost:3306/warehouse
-###Swagger UI
+### Swagger UI
 >[Page](http://localhost:8081/swagger-ui.html#/)
-###Paging
+### Paging
 >* Use [Mybatis-PageHelper](https://github.com/abel533/MyBatis-Spring-Boot)
 >* Sample:[getOrders](http://localhost:8081/swagger-ui.html#/order-controller/getOrdersUsingPOST)
-###Mybatis Generator
+### Mybatis Generator
 >* Use [Mybatis-PageHelper](https://github.com/mybatis/generator)
 >* file[src\main\resources\generatorConfig.xml]
 >mouse right click=>Run Maven=>mybatis-generator:generate
