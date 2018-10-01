@@ -1,8 +1,8 @@
 package com.example.controller;
 
 import com.example.form.OrderForm;
-import com.example.service.OrderService;
 import com.example.model.OrderSummary;
+import com.example.service.OrderService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,8 +50,12 @@ public class OrderController {
   @ApiOperation(value = "getOrders", notes = "getOrders", httpMethod = "POST")
   public PageInfo<OrderSummary> getOrders(@RequestBody OrderForm from) throws Exception {
 
-    PageInfo<OrderSummary> pageInfo = orderService.getOrders(Optional.ofNullable(from.getPageNum()).orElse(1),
-        Optional.ofNullable(from.getPageSize()).orElse(10));
+    OrderSummary orderSummary = new OrderSummary();
+    BeanUtils.copyProperties(from, orderSummary);
+
+    PageInfo<OrderSummary> pageInfo = orderService
+        .getOrders(orderSummary, Optional.ofNullable(from.getPageNum()).orElse(1),
+            Optional.ofNullable(from.getPageSize()).orElse(10));
     return pageInfo;
   }
 

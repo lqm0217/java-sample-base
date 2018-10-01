@@ -7,5 +7,6 @@ public interface OrderService {
 
   OrderSummary getOrderById(Long id) throws Exception;
 
-  PageInfo<OrderSummary> getOrders(int pageNum, int pageSize) throws Exception;
+  PageInfo<OrderSummary> getOrders(OrderSummary orderSummary, int pageNum, int pageSize)
+      throws Exception;
 }
