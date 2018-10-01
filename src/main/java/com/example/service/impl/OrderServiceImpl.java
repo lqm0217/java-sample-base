@@ -1,9 +1,10 @@
 package com.example.service.impl;
 
-import com.example.service.OrderService;
 import com.example.dao.common.OrderSummaryMapper;
 import com.example.model.OrderSummary;
 import com.example.model.OrderSummaryExample;
+import com.example.model.OrderSummaryExample.Criteria;
+import com.example.service.OrderService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import java.util.List;
@@ -32,8 +33,16 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public PageInfo<OrderSummary> getOrders(int pageNum, int pageSize) throws Exception {
+  public PageInfo<OrderSummary> getOrders(OrderSummary orderSummary, int pageNum, int pageSize)
+      throws Exception {
     OrderSummaryExample example = new OrderSummaryExample();
+    Criteria criteria = example.createCriteria();
+    if (orderSummary.getUserId() != null) {
+      criteria.andUserIdEqualTo(orderSummary.getUserId());
+    }
+    if (StringUtils.isNotEmpty(orderSummary.getZip())) {
+      criteria.andZipEqualTo(orderSummary.getZip());
+    }
     example.setOrderByClause("id");
 
     PageHelper.startPage(pageNum, pageSize);
