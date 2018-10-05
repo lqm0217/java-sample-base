@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.controller.api;
 
 import com.example.form.OrderForm;
 import com.example.model.OrderSummary;
@@ -12,11 +12,14 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @Validated
+@RequestMapping("/api/order")
 @Api(value = "OrderController")
 public class OrderController {
 
@@ -34,9 +38,9 @@ public class OrderController {
   /**
    * get single order summary information by id.
    */
-  @GetMapping("/getOrder/{id}")
+  @GetMapping(value = "/getOrder/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   @ResponseBody
-  @ApiOperation(value = "getOrder", notes = "getOrder", httpMethod = "GET")
+  @ApiOperation(value = "getOrder", notes = "getOrder", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   public OrderSummary getOrder(@PathVariable(value = "id") Long id) throws Exception {
 
     return orderService.getOrderById(id);
@@ -45,7 +49,7 @@ public class OrderController {
   /**
    * get order summary information.
    */
-  @PostMapping("/getOrders")
+  @PostMapping(value = "/getOrders", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
   @ResponseBody
   @ApiOperation(value = "getOrders", notes = "getOrders", httpMethod = "POST")
   public PageInfo<OrderSummary> getOrders(@RequestBody OrderForm from) throws Exception {
