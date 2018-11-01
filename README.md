@@ -21,3 +21,10 @@
 >* Use [Mybatis Generator](https://github.com/mybatis/generator)
 >* file[src\main\resources\generatorConfig.xml]
 >mouse right click=>Run Maven=>mybatis-generator:generate
+
+### Docker
+>first need to install docker
+>* Create docker image(run in CMD or PowerShell, [<font color=#FF0000 >**.**<font>] is necessary)
+>  <pre>docker build -t java-sample-base .</pre>
+>* Create docker container
+>  <pre>docker run -it --rm --name sample -p 8081:8081 -d java-sample-base</pre>
